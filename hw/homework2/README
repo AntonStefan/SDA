@@ -1,0 +1,26 @@
+Quadtree - A ppm image compression program
+
+Compilation:
+    The program can be compiled using the included makefile by using the make
+command.
+
+Usage:
+    - compression:
+        ./quadtree -c [threshold] [input_file] [output_file]
+        where [threshold] can be any unsigned integer
+    - decompression
+        ./quadtree -d [input_file] [output_file]
+
+Notes:
+    The program only works on square ppm images with size equal to a power of 2.
+
+How it works:
+    As the name suggests, the program uses quadtrees, a tree data structure in
+which each node has exactly four children.
+    For compression, the image is recursively split into quarters until a
+similarity score based on the average color of each quarter is less or equal
+than the given threshold. The data for each quarter is stored as a quadtree node.
+    For decompression, the image is recursively reconstructed from the data
+in a given quadtree.
+
+./quadtree -d Exemple/compress1_370.out Exemple/decompress12.ppm
